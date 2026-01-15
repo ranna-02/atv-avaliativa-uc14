@@ -9,6 +9,7 @@ import {
     Text,
     TouchableOpacity,
     View,
+    Platform
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Location from 'expo-location';
@@ -128,24 +129,30 @@ export default function LocationScreen() {
                     ) : errorMsg ? (
                         <Text style={styles.errorText}>{errorMsg}</Text>
                     ) : location ? (
-                        <View style={styles.dataContainer}>
-                            <View style={styles.dataRow}>
-                                <Text style={styles.label}>Latitude:</Text>
-                                <Text style={styles.value}>{location.coords.latitude}</Text>
+                        <>
+                            <View style={[styles.mapContainer, { justifyContent: 'center', alignItems: 'center', backgroundColor: '#E2E8F0' }]}>
+                                <Ionicons name="map-outline" size={48} color={COLORS.body} />
+                                <Text style={{ color: COLORS.body, marginTop: 8 }}>Mapa visível apenas em App Móvel</Text>
                             </View>
-                            <View style={styles.dataRow}>
-                                <Text style={styles.label}>Longitude:</Text>
-                                <Text style={styles.value}>{location.coords.longitude}</Text>
+                            <View style={styles.dataContainer}>
+                                <View style={styles.dataRow}>
+                                    <Text style={styles.label}>Latitude:</Text>
+                                    <Text style={styles.value}>{location.coords.latitude}</Text>
+                                </View>
+                                <View style={styles.dataRow}>
+                                    <Text style={styles.label}>Longitude:</Text>
+                                    <Text style={styles.value}>{location.coords.longitude}</Text>
+                                </View>
+                                <View style={styles.dataRow}>
+                                    <Text style={styles.label}>Precisão:</Text>
+                                    <Text style={styles.value}>{location.coords.accuracy?.toFixed(1)} m</Text>
+                                </View>
+                                <View style={styles.dataRow}>
+                                    <Text style={styles.label}>Data:</Text>
+                                    <Text style={styles.value}>{new Date(location.timestamp).toLocaleString()}</Text>
+                                </View>
                             </View>
-                            <View style={styles.dataRow}>
-                                <Text style={styles.label}>Precisão:</Text>
-                                <Text style={styles.value}>{location.coords.accuracy?.toFixed(1)} m</Text>
-                            </View>
-                            <View style={styles.dataRow}>
-                                <Text style={styles.label}>Data:</Text>
-                                <Text style={styles.value}>{new Date(location.timestamp).toLocaleString()}</Text>
-                            </View>
-                        </View>
+                        </>
                     ) : (
                         <Text style={styles.infoText}>Toque em atualizar para obter a localização.</Text>
                     )}
@@ -302,5 +309,18 @@ const styles = StyleSheet.create({
         color: COLORS.white,
         fontSize: 18,
         fontWeight: 'bold',
+    },
+    mapContainer: {
+        width: '100%',
+        height: 200,
+        borderRadius: 16,
+        overflow: 'hidden',
+        marginBottom: 20,
+        borderWidth: 1,
+        borderColor: '#E2E8F0',
+    },
+    map: {
+        width: '100%',
+        height: '100%',
     },
 });
