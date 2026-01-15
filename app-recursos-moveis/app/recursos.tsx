@@ -2,13 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {
-    Alert,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -37,7 +37,7 @@ export default function RecursosScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      
+
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
@@ -54,8 +54,8 @@ export default function RecursosScreen() {
         </View>
 
         {/* Câmera Button */}
-        <TouchableOpacity 
-          style={styles.actionCard} 
+        <TouchableOpacity
+          style={styles.actionCard}
           onPress={() => handleAction('Câmera')}
         >
           <View style={[styles.iconBox, { backgroundColor: '#E0F2FE' }]}>
@@ -69,9 +69,9 @@ export default function RecursosScreen() {
         </TouchableOpacity>
 
         {/* Localização Button */}
-        <TouchableOpacity 
-          style={styles.actionCard} 
-          onPress={() => handleAction('Localização')}
+        <TouchableOpacity
+          style={styles.actionCard}
+          onPress={() => router.push('/location')}
         >
           <View style={[styles.iconBox, { backgroundColor: '#F5F3FF' }]}>
             <Ionicons name="location" size={32} color={COLORS.secondary} />
@@ -84,8 +84,8 @@ export default function RecursosScreen() {
         </TouchableOpacity>
 
         {/* Internet Button */}
-        <TouchableOpacity 
-          style={styles.actionCard} 
+        <TouchableOpacity
+          style={styles.actionCard}
           onPress={() => handleAction('Internet')}
         >
           <View style={[styles.iconBox, { backgroundColor: '#F0FDF4' }]}>
